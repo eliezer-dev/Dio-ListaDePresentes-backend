@@ -9,6 +9,7 @@ import one.digitalinnovation.gof.service.ViaCepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
+import org.springframework.cloud.openfeign.FeignClient;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
