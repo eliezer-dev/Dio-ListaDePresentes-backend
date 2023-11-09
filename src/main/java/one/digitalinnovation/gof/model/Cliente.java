@@ -11,6 +11,26 @@ public class Cliente {
     @ManyToOne
     private Endereco endereco;
 
+    private String telefoneContato;
+
+    private String email;
+
+    public String getTelefoneContato() {
+        return telefoneContato;
+    }
+
+    public void setTelefoneContato(String telefoneContato) {
+        this.telefoneContato = telefoneContato;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }
