@@ -19,7 +19,6 @@ public class ClienteRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> buscarPorId(@PathVariable Long id) {
-        System.out.println("chegou aqui");
         return ResponseEntity.ok(clienteService.buscarPorId(id));
     }
 
