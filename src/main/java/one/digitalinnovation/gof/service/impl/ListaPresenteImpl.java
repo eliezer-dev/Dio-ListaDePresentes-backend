@@ -14,10 +14,10 @@ public class ListaPresenteImpl implements ListaPresenteService {
     @Autowired
     private PresenteRepository listaPresenteRepository;
 
+
     @Override
     public ListaPresente buscarTodos(){
         Iterable<ProdutoPedido> listaComTodososPedidos = listaPresenteRepository.findAll();
-        //ArrayList<Object> listaPresente = new ArrayList<>();
         ListaPresente listaPresente = new ListaPresente();
         Set<Long>listaComNumeroPedidosUnicos = new HashSet<>();
         listaComTodososPedidos.forEach(p -> {
@@ -40,41 +40,20 @@ public class ListaPresenteImpl implements ListaPresenteService {
         return listaPresente;
     }
 
-//    @Override
-//    public Iterable<Presente> buscarTodos() {
-//        return listaPresenteRepository.findAll();
-//    }
-
-//    @Override
-//    public List<List<ListaPresente>> buscarTodos() {
-//        List<List<ListaPresente>> listaPresentesFinal = new ArrayList<>();
-//        Iterable<ListaPresente> listaPresenteBd = listaPresenteRepository.findAll();
-//        Set<Pedido> listaPedidos = new HashSet<>();
-//        for (ListaPresente l : listaPresenteBd) {
-//            Long pedido = l.getPedido();
-//            listaPedidos.add(new Pedido(pedido));
-//
-//        }
-//        System.out.println(listaPedidos);
-//
-//
-//        listaPedidos.forEach(pedido -> {
-//            List<ListaPresente> listaPresentePorPedido = new ArrayList<>();
-//            listaPresenteBd.forEach(presente -> {
-//
-//                if (presente.getPedido().equals(pedido.getPedido())){
-//                    listaPresentePorPedido.add(presente);
-//                }
-//            });
-//            listaPresentesFinal.add(listaPresentePorPedido);
-//        });
-//        System.out.println(listaPresentesFinal);
-//        return listaPresentesFinal;
-//    }
-
     @Override
-    public ProdutoPedido buscarPorId(Long idPedido) {
-        return null;
+    public ListaPresente buscarPorPedido(Long pedido) {
+        Iterable<ProdutoPedido> listaComTodososPedidos = listaPresenteRepository.findAll();
+        ListaPresente listaPresente = new ListaPresente();
+        Pedido pedidoformatado = new Pedido();
+        listaComTodososPedidos.forEach(p -> {
+            if (p.getPedido().equals(pedido)){
+                pedidoformatado.setPedido(p.getPedido());
+                pedidoformatado.setIdCliente(p.getIdCliente());
+                pedidoformatado.setPresentes(p);
+            }
+        });
+        listaPresente.setPedido(pedidoformatado);
+        return listaPresente;
     }
 
 
@@ -84,12 +63,22 @@ public class ListaPresenteImpl implements ListaPresenteService {
     }
 
     @Override
-    public void atualizar(Long idPedido, ProdutoPedido produtoPedido) {
+    public void atualizar(Long pedido, ProdutoPedido produtoPedido) {
 
     }
 
     @Override
-    public void deletar(Long idPedido) {
-
+    public void deletar(Long pedido) {
+        Iterable<ProdutoPedido> listaComTodososPedidos = listaPresenteRepository.findAll();
+        listaComTodososPedidos.forEach(p -> {
+            if (p.getPedido().equals(pedido)){
+                listaPresenteRepository.deleteById(p.getId());
+            }
+        });
     }
+
+    private ListaPresente obterListaPresente(){
+        return null;
+    }
+
 }

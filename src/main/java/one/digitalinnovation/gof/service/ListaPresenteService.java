@@ -6,9 +6,9 @@ import one.digitalinnovation.gof.model.ProdutoPedido;
 
 public interface ListaPresenteService {
     ListaPresente buscarTodos();
-    ProdutoPedido buscarPorId(Long Id);
+    ListaPresente buscarPorPedido(Long pedido);
 
     void inserir(ProdutoPedido produtoPedido);
-    void atualizar(Long idPedido, ProdutoPedido produtoPedido);
-    void deletar(Long idPedido);
+    void atualizar(Long pedido, ProdutoPedido produtoPedido);
+    void deletar(Long pedido);
 }

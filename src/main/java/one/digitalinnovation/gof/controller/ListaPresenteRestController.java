@@ -1,6 +1,7 @@
 package one.digitalinnovation.gof.controller;
 
 import one.digitalinnovation.gof.model.ListaPresente;
+import one.digitalinnovation.gof.model.Produto;
 import one.digitalinnovation.gof.model.ProdutoPedido;
 import one.digitalinnovation.gof.service.ListaPresenteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,21 +28,21 @@ public class ListaPresenteRestController {
     }
 
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<ListaPresente> buscarPorId(@PathVariable Long id) {
-//        return ResponseEntity.ok(listaPresenteService.buscarPorId(id));
+    @GetMapping("/{pedido}")
+    public ResponseEntity<ListaPresente> buscarPorId(@PathVariable Long pedido) {
+        return ResponseEntity.ok(listaPresenteService.buscarPorPedido(pedido));
+    }
+
+    //desenvolvimento futuro
+//    @PutMapping("/{pedido}")
+//    public ResponseEntity<ProdutoPedido> atualizar(@PathVariable Long pedido, @RequestBody ProdutoPedido produtoPedido) {
+//        listaPresenteService.atualizar(pedido, produtoPedido);
+//        return ResponseEntity.ok(produtoPedido);
 //    }
-//
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<ListaPresente> atualizar(@PathVariable Long id, @RequestBody ListaPresente listaPresente) {
-//        listaPresenteService.atualizar(id, listaPresente);
-//        return ResponseEntity.ok(listaPresente);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> deletar(@PathVariable Long id) {
-//        listaPresenteService.deletar(id);
-//        return ResponseEntity.ok().build();
-//    }
+
+    @DeleteMapping("/{pedido}")
+    public ResponseEntity<Void> deletar(@PathVariable Long pedido) {
+        listaPresenteService.deletar(pedido);
+        return ResponseEntity.ok().build();
+    }
 }
