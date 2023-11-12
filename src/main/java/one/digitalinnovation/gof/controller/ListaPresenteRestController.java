@@ -1,8 +1,7 @@
 package one.digitalinnovation.gof.controller;
 
-import one.digitalinnovation.gof.model.ListaPresente;
-import one.digitalinnovation.gof.model.Produto;
-import one.digitalinnovation.gof.model.ProdutoPedido;
+import one.digitalinnovation.gof.model.ListaPresentes.ListaDePedidos;
+import one.digitalinnovation.gof.model.ListaPresentes.ListasPresentes;
 import one.digitalinnovation.gof.service.ListaPresenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,21 +14,21 @@ public class ListaPresenteRestController {
     private ListaPresenteService listaPresenteService;
 
     @GetMapping
-    public ResponseEntity<ListaPresente> buscarTodos(){
+    public ResponseEntity<ListaDePedidos> buscarTodos(){
         System.out.println(listaPresenteService.buscarTodos());
         return ResponseEntity.ok(listaPresenteService.buscarTodos());
 
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoPedido> inserir(@RequestBody ProdutoPedido produtoPedido) {
-        listaPresenteService.inserir(produtoPedido);
-        return ResponseEntity.ok(produtoPedido);
+    public ResponseEntity<ListasPresentes> inserir(@RequestBody ListasPresentes listasPresentes) {
+        listaPresenteService.inserir(listasPresentes);
+        return ResponseEntity.ok(listasPresentes);
     }
 
 
     @GetMapping("/{pedido}")
-    public ResponseEntity<ListaPresente> buscarPorId(@PathVariable Long pedido) {
+    public ResponseEntity<ListaDePedidos> buscarPorId(@PathVariable Long pedido) {
         return ResponseEntity.ok(listaPresenteService.buscarPorPedido(pedido));
     }
 

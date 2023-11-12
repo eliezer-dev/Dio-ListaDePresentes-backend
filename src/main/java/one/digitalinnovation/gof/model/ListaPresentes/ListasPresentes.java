@@ -1,4 +1,4 @@
-package one.digitalinnovation.gof.model;
+package one.digitalinnovation.gof.model.ListaPresentes;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-public class ProdutoPedido {
+public class ListasPresentes {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

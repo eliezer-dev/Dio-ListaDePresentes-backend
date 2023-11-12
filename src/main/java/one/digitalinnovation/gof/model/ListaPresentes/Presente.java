@@ -1,4 +1,4 @@
-package one.digitalinnovation.gof.model;
+package one.digitalinnovation.gof.model.ListaPresentes;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;

@@ -1,13 +1,9 @@
-package one.digitalinnovation.gof.model;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
+package one.digitalinnovation.gof.model.ListaPresentes;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaPresente {
+public class ListaDePedidos {
 
     private List<Pedido> pedidos = new ArrayList<>();
 

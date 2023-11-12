@@ -1,14 +1,14 @@
 package one.digitalinnovation.gof.service;
 
-import one.digitalinnovation.gof.model.ListaPresente;
-import one.digitalinnovation.gof.model.ProdutoPedido;
+import one.digitalinnovation.gof.model.ListaPresentes.ListaDePedidos;
+import one.digitalinnovation.gof.model.ListaPresentes.ListasPresentes;
 
 
 public interface ListaPresenteService {
-    ListaPresente buscarTodos();
-    ListaPresente buscarPorPedido(Long pedido);
+    ListaDePedidos buscarTodos();
+    ListaDePedidos buscarPorPedido(Long pedido);
 
-    void inserir(ProdutoPedido produtoPedido);
-    void atualizar(Long pedido, ProdutoPedido produtoPedido);
+    void inserir(ListasPresentes listasPresentes);
+    void atualizar(Long pedido, ListasPresentes listasPresentes);
     void deletar(Long pedido);
 }

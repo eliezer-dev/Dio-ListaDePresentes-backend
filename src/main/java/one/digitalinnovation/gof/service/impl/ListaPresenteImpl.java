@@ -1,6 +1,9 @@
 package one.digitalinnovation.gof.service.impl;
 
-import one.digitalinnovation.gof.model.*;
+import one.digitalinnovation.gof.model.ListaPresentes.ListaDePedidos;
+import one.digitalinnovation.gof.model.ListaPresentes.ListasPresentes;
+import one.digitalinnovation.gof.model.ListaPresentes.ListasPresentesRepository;
+import one.digitalinnovation.gof.model.ListaPresentes.Pedido;
 import one.digitalinnovation.gof.service.ListaPresenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,73 +15,66 @@ import java.util.Set;
 public class ListaPresenteImpl implements ListaPresenteService {
 
     @Autowired
-    private PresenteRepository listaPresenteRepository;
+    private ListasPresentesRepository listaPresentesRepository;
 
 
     @Override
-    public ListaPresente buscarTodos(){
-        Iterable<ProdutoPedido> listaComTodososPedidos = listaPresenteRepository.findAll();
-        ListaPresente listaPresente = new ListaPresente();
-        Set<Long>listaComNumeroPedidosUnicos = new HashSet<>();
+    public ListaDePedidos buscarTodos(){
+        Iterable<ListasPresentes> listaComTodososPedidos = listaPresentesRepository.findAll();
+        ListaDePedidos listaDePedidos = new ListaDePedidos();
+
+        Set<Long>listaComTodosNumerosPedidosUnicos = new HashSet<>();
         listaComTodososPedidos.forEach(p -> {
-            listaComNumeroPedidosUnicos.add(p.getPedido());
+            listaComTodosNumerosPedidosUnicos.add(p.getPedido());
         });
-       listaComNumeroPedidosUnicos.forEach(n -> {
-           Pedido pedido = new Pedido();
-           listaComTodososPedidos.forEach(p -> {
 
-               if (p.getPedido().equals(n)){
-                   pedido.setPedido(p.getPedido());
-                   pedido.setIdCliente(p.getIdCliente());
-                   pedido.setPresentes(p);
-               }
-
-           });
-           listaPresente.setPedido(pedido);
+        listaComTodosNumerosPedidosUnicos.forEach(pedidoProcurado -> {
+           salvaPedidoProcuradoNaListaDePedidos(pedidoProcurado, listaDePedidos);
        });
-
-        return listaPresente;
+        return listaDePedidos;
     }
 
     @Override
-    public ListaPresente buscarPorPedido(Long pedido) {
-        Iterable<ProdutoPedido> listaComTodososPedidos = listaPresenteRepository.findAll();
-        ListaPresente listaPresente = new ListaPresente();
-        Pedido pedidoformatado = new Pedido();
-        listaComTodososPedidos.forEach(p -> {
-            if (p.getPedido().equals(pedido)){
-                pedidoformatado.setPedido(p.getPedido());
-                pedidoformatado.setIdCliente(p.getIdCliente());
-                pedidoformatado.setPresentes(p);
-            }
-        });
-        listaPresente.setPedido(pedidoformatado);
-        return listaPresente;
+    public ListaDePedidos buscarPorPedido(Long pedidoProcurado) {
+        ListaDePedidos listaDePedidos = new ListaDePedidos();
+        salvaPedidoProcuradoNaListaDePedidos(pedidoProcurado, listaDePedidos);
+        return listaDePedidos;
     }
 
 
     @Override
-    public void inserir(ProdutoPedido produtoPedido) {
-        listaPresenteRepository.save(produtoPedido);
+    public void inserir(ListasPresentes listasPresentes) {
+        listaPresentesRepository.save(listasPresentes);
     }
 
     @Override
-    public void atualizar(Long pedido, ProdutoPedido produtoPedido) {
+    public void atualizar(Long pedido, ListasPresentes listasPresentes) {
 
     }
 
     @Override
     public void deletar(Long pedido) {
-        Iterable<ProdutoPedido> listaComTodososPedidos = listaPresenteRepository.findAll();
+        Iterable<ListasPresentes> listaComTodososPedidos = listaPresentesRepository.findAll();
         listaComTodososPedidos.forEach(p -> {
             if (p.getPedido().equals(pedido)){
-                listaPresenteRepository.deleteById(p.getId());
+                listaPresentesRepository.deleteById(p.getId());
             }
         });
     }
 
-    private ListaPresente obterListaPresente(){
-        return null;
+    private void salvaPedidoProcuradoNaListaDePedidos(Long pedidoProcurado, ListaDePedidos listaDePedidos){
+        Iterable<ListasPresentes> listaComTodososPedidos = listaPresentesRepository.findAll();
+        Pedido pedidoFormatado = new Pedido();
+        listaComTodososPedidos.forEach(p -> {
+
+            if (p.getPedido().equals(pedidoProcurado)){
+                pedidoFormatado.setPedido(p.getPedido());
+                pedidoFormatado.setIdCliente(p.getIdCliente());
+                pedidoFormatado.setPresentes(p);
+            }
+
+        });
+        listaDePedidos.setPedido(pedidoFormatado);
     }
 
 }

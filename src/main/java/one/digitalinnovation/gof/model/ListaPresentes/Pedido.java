@@ -1,7 +1,8 @@
-package one.digitalinnovation.gof.model;
+package one.digitalinnovation.gof.model.ListaPresentes;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Pedido {
     private Long pedido;
@@ -31,12 +32,12 @@ public class Pedido {
         return listaPresentes;
     }
 
-    public void setPresentes(ProdutoPedido produtoPedido){
+    public void setPresentes(ListasPresentes listasPresentes){
         Presente presente = new Presente();
-        System.out.println(produtoPedido.getIdProduto());
-        presente.setIdProduto(produtoPedido.getIdProduto());
-        presente.setPreco(produtoPedido.getPreco());
-        presente.setQuantidade(produtoPedido.getQuantidade());
+        System.out.println(listasPresentes.getIdProduto());
+        presente.setIdProduto(listasPresentes.getIdProduto());
+        presente.setPreco(listasPresentes.getPreco());
+        presente.setQuantidade(listasPresentes.getQuantidade());
         this.listaPresentes.add(presente);
     }
 
