@@ -15,7 +15,6 @@ public class ListaPresenteRestController {
 
     @GetMapping
     public ResponseEntity<ListaDePedidos> buscarTodos(){
-        System.out.println(listaPresenteService.buscarTodos());
         return ResponseEntity.ok(listaPresenteService.buscarTodos());
 
     }
