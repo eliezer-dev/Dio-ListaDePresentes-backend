@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>one.digitalinnovation</groupId>
-	<artifactId>lista-de-presentes</artifactId>
-	<version>1.0.0-Final</version>
-	<name>lista-de-presentes</name>
-	<description>Software para Administrar Lista de Presentes</description>
+	<artifactId>lab-padroes-projeto-spring</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>lab-padroes-projeto-spring</name>
+	<description>Exemplo de Padrões de Projetos em Spring</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2022.0.4</spring-cloud.version>
