@@ -11,7 +11,7 @@
 	<groupId>one.digitalinnovation</groupId>
 	<artifactId>lab-padroes-projeto-spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lab-padroes-projeto-spring</name>
+	<name>lab-padroes-projet:wqo-spring</name>
 	<description>Exemplo de Padrões de Projetos em Spring</description>
 	<properties>
 		<java.version>17</java.version>
